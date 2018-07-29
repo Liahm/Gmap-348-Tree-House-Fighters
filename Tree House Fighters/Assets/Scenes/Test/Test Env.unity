@@ -261,7 +261,7 @@ Prefab:
         type: 2}
       propertyPath: PlayerTwo
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1699841184}
     - target: {fileID: 114441034990292396, guid: 92d2188931d5094439914e49193efab5,
         type: 2}
       propertyPath: PlayerOne
@@ -1145,15 +1145,21 @@ Prefab:
         type: 2}
       propertyPath: HealthBar
       value: 
-      objectReference: {fileID: 740028431}
+      objectReference: {fileID: 432451072}
     - target: {fileID: 114356469093620502, guid: 5b4fa4d0c518cdc4c886299e35bea119,
         type: 2}
       propertyPath: BulletCount
       value: 
-      objectReference: {fileID: 1325455586}
+      objectReference: {fileID: 2074800509}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b4fa4d0c518cdc4c886299e35bea119, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1699841184 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114356469093620502, guid: 5b4fa4d0c518cdc4c886299e35bea119,
+    type: 2}
+  m_PrefabInternal: {fileID: 1699841183}
+  m_Script: {fileID: 11500000, guid: 307f9f84ce09a3549abca24dbdd1247a, type: 3}
 --- !u!1 &2011284341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1381,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76bbea6a0b0d64540a49353d17a5c1f0, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2074800509 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114811601337091372, guid: 76bbea6a0b0d64540a49353d17a5c1f0,
+    type: 2}
+  m_PrefabInternal: {fileID: 2074800508}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &2074800511 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114248446305572694, guid: 76bbea6a0b0d64540a49353d17a5c1f0,
