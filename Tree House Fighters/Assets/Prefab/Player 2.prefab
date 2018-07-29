@@ -1524,18 +1524,18 @@ MonoBehaviour:
   CanMove: 1
   Shooting: 0
   CanShoot: 1
-  Speed: 10
-  ShootingPlayerSpeed: 6
+  Speed: 14
+  ShootingPlayerSpeed: 7
   ResetAfterShootTime: 1
   Gravity: 9.81
   ReloadTimeOne: 3
   ShootOneFireRate: 0.2
   ShootingSpread: 0.2
   ShootOneDamage: 1
-  ShootOneSpeed: 50
+  ShootOneSpeed: 80
   MagazineSizeOne: 60
   ReloadTimeTwo: 5
-  ShootTwoDamage: 5
+  ShootTwoDamage: 8
   ShootTwoSpeed: 100
   ReloadTimeThree: 5
   ShootThreeDamage: 5
