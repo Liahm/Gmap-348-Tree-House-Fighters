@@ -182,7 +182,8 @@ public class PlayerMovement : MonoBehaviour
 		var randomNumberX = Random.Range(-ShootingSpread, ShootingSpread);
      	var randomNumberY = Random.Range(-ShootingSpread, ShootingSpread);
      	var randomNumberZ = Random.Range(-ShootingSpread, ShootingSpread); 
-
+		Quaternion playerY = Quaternion.Euler(0, transform.rotation.y,0);
+		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 		if(Time.timeSinceLevelLoad >= timeStamp)
 		{
 			if(cannonChange)
@@ -191,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
 				flak.transform.SetParent(null);
 				flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
 				flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
-				transform.rotation = Quaternion.Lerp(transform.rotation, Cam.transform.rotation, Time.time * 0.1f);
+				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
 				cannonChange = false;
 			}
 			else
@@ -200,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 				flak.transform.SetParent(null);
 				flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
 				flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
-				transform.rotation = Quaternion.Lerp(transform.rotation, Cam.transform.rotation, Time.time * 0.1f);
+				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
 				cannonChange = true;
 			}
 			shotsFired--;
