@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
 		constVelocity		=	Vector3.zero,//constant velocity added every frame
 		Center				=	Vector3.zero;
 	
-	public GameObject FlackSpawnPos1,FlackSpawnPos2,CannonSpawnPos,GrenadeSpawnPos;
+	public GameObject CannonSpawnPos,GrenadeSpawnPos;
+	public GameObject[] FlackSpawnPos1,FlackSpawnPos2;
 	[Space(10)]
 	public GameObject Bullets;
 	public GameObject Cannon, Grenades;
@@ -188,19 +189,25 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if(cannonChange)
 			{
-				flak = Instantiate(Bullets, FlackSpawnPos1.transform);
-				flak.transform.SetParent(null);
-				flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
-				flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
+				foreach(GameObject flacks in FlackSpawnPos1)
+				{
+					flak = Instantiate(Bullets, flacks.transform);
+					flak.transform.SetParent(null);
+					flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+					flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
+				}
 				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
 				cannonChange = false;
 			}
 			else
 			{
-				flak = Instantiate(Bullets, FlackSpawnPos2.transform);
-				flak.transform.SetParent(null);
-				flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
-				flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
+				foreach(GameObject flacks in FlackSpawnPos2)
+				{
+					flak = Instantiate(Bullets, flacks.transform);
+					flak.transform.SetParent(null);
+					flak.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+					flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
+				}
 				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
 				cannonChange = true;
 			}
