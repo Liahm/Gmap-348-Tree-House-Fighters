@@ -654,16 +654,6 @@ Prefab:
       propertyPath: BulletCount
       value: 
       objectReference: {fileID: 1325455586}
-    - target: {fileID: 114839609931257104, guid: 921e7f4a98013b949a2da447fa755015,
-        type: 2}
-      propertyPath: ShootThreeSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114839609931257104, guid: 921e7f4a98013b949a2da447fa755015,
-        type: 2}
-      propertyPath: ShootThreeDamage
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 921e7f4a98013b949a2da447fa755015, type: 2}
   m_IsPrefabParent: 0
@@ -1161,20 +1151,6 @@ Prefab:
       propertyPath: BulletCount
       value: 
       objectReference: {fileID: 1325455586}
-    - target: {fileID: 4964268656046820, guid: 5b4fa4d0c518cdc4c886299e35bea119, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 359.576
-      objectReference: {fileID: 0}
-    - target: {fileID: 114356469093620502, guid: 5b4fa4d0c518cdc4c886299e35bea119,
-        type: 2}
-      propertyPath: ShootThreeDamage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114356469093620502, guid: 5b4fa4d0c518cdc4c886299e35bea119,
-        type: 2}
-      propertyPath: ShootThreeSpeed
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b4fa4d0c518cdc4c886299e35bea119, type: 2}
   m_IsPrefabParent: 0

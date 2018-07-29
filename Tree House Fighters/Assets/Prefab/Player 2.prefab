@@ -873,8 +873,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762878952192456}
-  m_LocalRotation: {x: -0, y: 0.9986716, z: -0, w: 0.051527925}
-  m_LocalPosition: {x: -0.27243125, y: 1.92, z: 13.840907}
+  m_LocalRotation: {x: -0, y: 0.0036964146, z: -0, w: -0.99999315}
+  m_LocalPosition: {x: 1.3259307, y: 1.92, z: -2.015085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4374048918859056}
@@ -887,7 +887,7 @@ Transform:
   - {fileID: 4774436716646218}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 174.093, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 359.576, z: 0}
 --- !u!20 &20895706401934642
 Camera:
   m_ObjectHideFlags: 1
@@ -1524,16 +1524,16 @@ MonoBehaviour:
   CanMove: 1
   Shooting: 0
   CanShoot: 1
-  Speed: 8
+  Speed: 10
   ShootingPlayerSpeed: 6
   ResetAfterShootTime: 1
   Gravity: 9.81
-  ReloadTimeOne: 2
-  ShootOneFireRate: 0.1
-  ShootingSpread: 0.1
+  ReloadTimeOne: 3
+  ShootOneFireRate: 0.2
+  ShootingSpread: 0.2
   ShootOneDamage: 1
   ShootOneSpeed: 50
-  MagazineSizeOne: 100
+  MagazineSizeOne: 60
   ReloadTimeTwo: 5
   ShootTwoDamage: 5
   ShootTwoSpeed: 100
