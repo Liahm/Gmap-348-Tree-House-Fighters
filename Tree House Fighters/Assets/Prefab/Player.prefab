@@ -1520,7 +1520,7 @@ MonoBehaviour:
   CamSensitivity: 100
   CamMaxAngle: 50
   CamMinAngle: -18
-  CamDispFactor: 3.5
+  CamDispFactor: 3.2
   CamVertAngle: 20
   CamHorAngle: 0
 --- !u!114 &114839609931257104
