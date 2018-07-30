@@ -346,7 +346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4703523649518920}
   - component: {fileID: 20895706401934642}
-  - component: {fileID: 81729860278990186}
   - component: {fileID: 114360572117515578}
   m_Layer: 0
   m_Name: Main Camera
@@ -738,13 +737,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375724503577426}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 2.743, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4964268656046820}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4774436716646218
 Transform:
   m_ObjectHideFlags: 1
@@ -873,8 +872,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762878952192456}
-  m_LocalRotation: {x: -0, y: 0.0036964146, z: -0, w: -0.99999315}
-  m_LocalPosition: {x: 1.3259307, y: 1.92, z: -2.015085}
+  m_LocalRotation: {x: -0, y: 0.35773212, z: -0, w: -0.9338243}
+  m_LocalPosition: {x: 31.51, y: 1.92, z: -59.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4374048918859056}
@@ -887,7 +886,7 @@ Transform:
   - {fileID: 4774436716646218}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 359.576, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 318.078, z: 0}
 --- !u!20 &20895706401934642
 Camera:
   m_ObjectHideFlags: 1
@@ -1398,13 +1397,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81729860278990186
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793367138908444}
-  m_Enabled: 1
 --- !u!82 &82373740072699924
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1579,7 +1571,7 @@ MonoBehaviour:
   CamMinAngle: -18
   CamDispFactor: 3.2
   CamVertAngle: 20
-  CamHorAngle: 0
+  CamHorAngle: 144
 --- !u!143 &143374102746392576
 CharacterController:
   m_ObjectHideFlags: 1
@@ -1591,12 +1583,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 2.91
+  m_Radius: 3.57
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0.02}
+  m_Center: {x: 0, y: 0.55, z: 0.02}
 --- !u!198 &198085374957735302
 ParticleSystem:
   m_ObjectHideFlags: 1

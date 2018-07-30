@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			BulletCount.text = shotsFired.ToString();
 		}
-		else if(reloading && Time.timeSinceLevelLoad >= timeStamp - 0.1f)
+		else if(reloading && Time.time >= timeStamp - 0.1f)
 		{
 			reloading = false;
 		}
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 				Debug.Log("Shooting One");
 				ShootFlaks();
 			}
-			else if(Time.timeSinceLevelLoad >= resetTimer && Shooting)
+			else if(Time.time >= resetTimer && Shooting)
 				Shooting = false;
 		}
 		//Allow all 3 to fire at the same time?
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 			Debug.Log("Shooting One");
 			ShootFlaks();
 		}
-		else if(Time.timeSinceLevelLoad >= resetTimer && Shooting)
+		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
 
 		if(Input.GetButtonDown(Axes.toStr[ShootTwo]) && CanShoot)
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
 			ShootMiddle();
 		}
-		else if(Time.timeSinceLevelLoad >= resetTimer && Shooting)
+		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
 
 		if(Input.GetButtonDown(Axes.toStr[ShootThree]) && CanShoot)
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 			Debug.Log("Shooting Three");
 			//ShootGrenades();
 		}
-		else if(Time.timeSinceLevelLoad >= resetTimer && Shooting)
+		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
     }
 
@@ -185,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
      	var randomNumberZ = Random.Range(-ShootingSpread, ShootingSpread); 
 		Quaternion playerY = Quaternion.Euler(0, transform.rotation.y,0);
 		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
-		if(Time.timeSinceLevelLoad >= timeStamp)
+		if(Time.time >= timeStamp)
 		{
 			if(cannonChange)
 			{
@@ -226,13 +226,13 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 		
-		resetTimer = Time.timeSinceLevelLoad + ResetAfterShootTime;
+		resetTimer = Time.time + ResetAfterShootTime;
 	}
 
 	private void ShootMiddle()
 	{
 		Shooting = true;
-		if(Time.timeSinceLevelLoad >= timeStamp2)
+		if(Time.time >= timeStamp2)
 		{
 			GameObject cannonBall = Instantiate(Cannon, CannonSpawnPos.transform);
 			cannonBall.transform.SetParent(null);
@@ -240,14 +240,14 @@ public class PlayerMovement : MonoBehaviour
 			cannonBall.GetComponent<Rigidbody>().velocity = (transform.forward * ShootTwoSpeed);
 			timeStamp2 = Time.time + ReloadTimeTwo;
 		}
-		resetTimer = Time.timeSinceLevelLoad + ResetAfterShootTime;
+		resetTimer = Time.time + ResetAfterShootTime;
 	}
 
 	private void ShootGrenades()
 	{
 		Shooting = true;
 
-		if(Time.timeSinceLevelLoad >= timeStamp3)
+		if(Time.time >= timeStamp3)
 		{
 			GameObject cannonBall = Instantiate(Cannon, CannonSpawnPos.transform);
 			cannonBall.transform.SetParent(null);
@@ -256,6 +256,6 @@ public class PlayerMovement : MonoBehaviour
 			timeStamp3 = Time.time + ReloadTimeTwo;
 		}
 
-		resetTimer = Time.timeSinceLevelLoad + ResetAfterShootTime;
+		resetTimer = Time.time + ResetAfterShootTime;
 	}
 }
