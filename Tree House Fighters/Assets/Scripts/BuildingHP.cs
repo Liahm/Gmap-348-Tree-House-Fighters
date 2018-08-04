@@ -2,42 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeExplosion : MonoBehaviour 
+public class BuildingHP : MonoBehaviour 
 {
 //------------------------------------------------------------------------CONSTANTS:
 
-	private const string LOG_TAG = "ChangeMe";
+	private const string LOG_TAG = "BuildingHP";
 	public bool VERBOSE = false;
 
 //---------------------------------------------------------------------------FIELDS:
-	public float Timer =0.25f;
+	public float HP;
 //---------------------------------------------------------------------MONO METHODS:
 
 	void Start() 
 	{
-		Invoke("BlowUp", Timer);
+
 	}
 		
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.tag == "Player")
+	void Update()
+    {
+		if(HP <= 0)
 		{
-			PlayerMovement pm = col.GetComponent<PlayerMovement>();
-			pm.HealthBar.value -= pm.ShootThreeDamage;
+			Destroy(gameObject);
 		}
-		if(col.tag == "Building")
-		{
-			BuildingHP BHP = col.GetComponent<BuildingHP>();
-
-			BHP.HP -= 20;
-		}
-	}
+    }
 
 //--------------------------------------------------------------------------METHODS:
 
 //--------------------------------------------------------------------------HELPERS:
-	private void BlowUp()
-	{
-		Destroy(gameObject, Timer);
-	}
+	
 }

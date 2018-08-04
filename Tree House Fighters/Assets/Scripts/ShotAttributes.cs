@@ -66,6 +66,20 @@ public class ShotAttributes : MonoBehaviour
 				pm.RightGunHP -= pm.ShootTwoDamage;
 			}
 		}
+
+		if(col.tag == "Building")
+		{
+			BuildingHP BHP = col.GetComponent<BuildingHP>();
+
+			if(gameObject.tag == "Bullet")
+			{
+				BHP.HP -= 1;
+			}
+			else if(gameObject.tag == "Cannon")
+			{
+				BHP.HP -= 8;
+			}
+		}
 		//Spawn dust animation
 		//Move back to queue
 		Destroy(gameObject);

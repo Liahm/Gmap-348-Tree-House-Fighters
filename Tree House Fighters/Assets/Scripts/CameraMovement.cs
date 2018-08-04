@@ -44,7 +44,7 @@ public class CameraMovement : MonoBehaviour
 		RaycastHit[] hits = Physics.SphereCastAll(CameraFocus.transform.position, 0.5f , pos, CamDistance, -1);
 		foreach (RaycastHit hit in hits)
 		{
-			if (hit.transform.tag == "Wall")
+			if (hit.transform.tag == "Wall" || hit.transform.tag == "Building")
 			{
 				dist = Mathf.Min(dist, hit.distance);
 			}

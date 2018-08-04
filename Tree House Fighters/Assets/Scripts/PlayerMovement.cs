@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
 
-		if(Input.GetButtonDown(Axes.toStr[ReloadButton]))
+		if(Input.GetButtonDown(Axes.toStr[ReloadButton]) && shotsFired != MagazineSizeOne)
 		{
 			timeStamp = Time.time + ReloadTimeOne;
 			BulletCount.text = "Reloading";
@@ -236,20 +236,11 @@ public class PlayerMovement : MonoBehaviour
 		constVelocity+=netForce * Time.deltaTime;
 
 		playerMove+=constVelocity;
-		if(Input.GetButtonDown(Axes.toStr[DodgeButton]) && !dashing)
+		if(Input.GetButton(Axes.toStr[DodgeButton]))
 		{	
 			CC.Move(playerMove*Time.deltaTime*DashSpeed);
-			if(Time.time > dashCooldown)
-			{
-				dashing = true;
-			}
 		}
-		if(Time.time > dashCooldown)
-		{
-			dashCooldown = Time.time + DashCD;
-			dashing = false;
-		}
-			
+		
 		CC.Move(playerMove*Time.deltaTime);
 		constVelocity=Vector3.Lerp(constVelocity,Vector3.zero,.5f*Time.deltaTime);
 		netForce=Gravity*Vector3.down;
@@ -257,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ShootFlaks()
 	{
-		Shooting = true;
+		
 		GameObject flak;
 		var randomNumberX = Random.Range(-ShootingSpread, ShootingSpread);
      	var randomNumberY = Random.Range(-ShootingSpread, ShootingSpread);
@@ -265,6 +256,7 @@ public class PlayerMovement : MonoBehaviour
 		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 		if(Time.time >= timeStamp)
 		{
+			Shooting = true;
 			if(cannonChange && RightGunHP > 0)
 			{
 				foreach(GameObject flacks in FlackSpawnPos1)
@@ -313,12 +305,12 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ShootMiddle()
 	{
-		Shooting = true;
 		if(Time.time >= timeStamp2)
 		{
 			GameObject cannonBall = Instantiate(Cannon, CannonSpawnPos.transform);
 			cannonBall.transform.SetParent(null);
 			transform.rotation = Cam.transform.rotation;
+			Shooting = true;
 			cannonBall.GetComponent<Rigidbody>().velocity = (transform.forward * ShootTwoSpeed);
 			timeStamp2 = Time.time + ReloadTimeTwo;
 		}
@@ -327,11 +319,12 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ShootGrenades()
 	{
-		Shooting = true;
+		
 		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 
 		if(Time.time >= timeStamp3)
 		{
+			Shooting = true;
 			GameObject Grenade = Instantiate(Grenades, GrenadeSpawnPos.transform);
 			Grenade.transform.SetParent(null);
 			transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
