@@ -5,15 +5,15 @@ using UnityEngine;
 public class Axes : MonoBehaviour 
 {
 	public enum Action {
-		MoveX, MoveY,
+		MoveX, MoveY, Dodge,
 		CamX, CamY,
 		ShootOne, ShootTwo, ShootThree,
 
-		MoveXController, MoveYController,
+		MoveXController, MoveYController, DodgeController,
 		CamXController, CamYController,
 		ShootOneController, ShootTwoController, ShootThreeController,
 
-		MoveX2, MoveY2,
+		MoveX2, MoveY2, Dodge2,
 		CamX2, CamY2,
 		ShootOne2, ShootTwo2, ShootThree2,
 	}

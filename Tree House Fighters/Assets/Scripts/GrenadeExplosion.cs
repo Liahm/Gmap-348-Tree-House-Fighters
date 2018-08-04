@@ -10,7 +10,7 @@ public class GrenadeExplosion : MonoBehaviour
 	public bool VERBOSE = false;
 
 //---------------------------------------------------------------------------FIELDS:
-	public float Timer;
+	public float Timer =0.25f;
 //---------------------------------------------------------------------MONO METHODS:
 
 	void Start() 
@@ -22,7 +22,8 @@ public class GrenadeExplosion : MonoBehaviour
 	{
 		if(col.tag == "Player")
 		{
-			//deal damage
+			PlayerMovement pm = col.GetComponent<PlayerMovement>();
+			pm.HealthBar.value -= pm.ShootThreeDamage;
 		}
 		
 	}

@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23603837161234830}
   - component: {fileID: 135021533081675872}
   - component: {fileID: 54792657427049394}
-  - component: {fileID: 114417128121488530}
   - component: {fileID: 82935646619140450}
+  - component: {fileID: 114592335221454442}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Grenade
@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1615407690742842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.13431808, y: 0.4817428, z: 0.07310099}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -197,7 +197,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114417128121488530
+--- !u!114 &114592335221454442
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -205,19 +205,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1615407690742842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f7186014997c14a993939730f81d64, type: 3}
+  m_Script: {fileID: 11500000, guid: 75d6152fdf767f54495233bd157c06ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   VERBOSE: 0
-  FlakShootSound: {fileID: 0}
-  CannonShootSound: {fileID: 0}
+  ActivationTime: 2
   GrenadeShootSound: {fileID: 0}
-  FlakHitSound: {fileID: 0}
-  CannonHitSound: {fileID: 0}
   GrenadeHitSound: {fileID: 0}
   Source: {fileID: 82935646619140450}
   GrenadeExplosion: {fileID: 1389797852283606, guid: 032a9a0651173af4ebafe3418a23cc6f,
     type: 2}
+  activated: 0
 --- !u!135 &135021533081675872
 SphereCollider:
   m_ObjectHideFlags: 1

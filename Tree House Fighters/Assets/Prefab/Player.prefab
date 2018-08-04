@@ -689,13 +689,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1994393416830120}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.006, y: 0.746, z: -0.596}
+  m_LocalRotation: {x: -0.12671773, y: -0.00499691, z: 0.004928035, w: 0.991914}
+  m_LocalPosition: {x: -1.48, y: 2.09, z: 1.25}
   m_LocalScale: {x: 0.46857998, y: 0.33393, z: 1}
   m_Children: []
   m_Father: {fileID: 4988438054387752}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -14.557001, y: -0.661, z: 0.65400004}
 --- !u!4 &4741885188601398
 Transform:
   m_ObjectHideFlags: 1
@@ -1512,8 +1512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VERBOSE: 0
-  XCamAxis: 9
-  YCamAxis: 10
+  XCamAxis: 11
+  YCamAxis: 12
   PM: {fileID: 114839609931257104}
   CameraFocus: {fileID: 1681959070583976}
   CamDistance: 8
@@ -1535,11 +1535,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VERBOSE: 0
-  Horizontal: 7
-  Vertical: 8
-  ShootOne: 11
-  ShootTwo: 12
-  ShootThree: 13
+  Horizontal: 8
+  Vertical: 9
+  ShootOne: 13
+  ShootTwo: 14
+  ShootThree: 15
   CC: {fileID: 143447114029844608}
   Cam: {fileID: 20921694481218102}
   HealthBar: {fileID: 0}
@@ -1562,7 +1562,7 @@ MonoBehaviour:
   ShootTwoSpeed: 100
   ReloadTimeThree: 5
   ShootThreeDamage: 5
-  ShootThreeSpeed: 50
+  ShootThreeSpeed: 40
   playerMove: {x: 0, y: 0, z: 0}
   netForce: {x: 0, y: 0, z: 0}
   constVelocity: {x: 0, y: 0, z: 0}

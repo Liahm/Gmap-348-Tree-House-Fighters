@@ -10,30 +10,37 @@ public class ShotAttributes : MonoBehaviour
 	public bool VERBOSE = false;
 
 //---------------------------------------------------------------------------FIELDS:
-	public AudioClip FlakShootSound, CannonShootSound, GrenadeShootSound;
-	public AudioClip FlakHitSound, CannonHitSound, GrenadeHitSound;
+	public AudioClip FlakShootSound, CannonShootSound;
+	public AudioClip FlakHitSound, CannonHitSound;
 	public AudioSource Source;
 
-	[Space(15)]
-	public GameObject GrenadeExplosion;
 //---------------------------------------------------------------------MONO METHODS:
 
 	void OnTriggerEnter(Collider col)
 	{
 		
-		if(gameObject.name == "Grenade")
-		{
-			if(GrenadeExplosion != null)
-				Instantiate(GrenadeExplosion, transform);
-		}
-		else if(col.tag == "Player")
+		if(col.tag == "Player")
 		{
 			PlayerMovement pm = col.GetComponent<PlayerMovement>();
 			Debug.Log(col.tag + " - " + gameObject.name);
 			if(gameObject.tag == "Bullet")
+			{
+				if(FlakHitSound != null)
+				{
+					Source.clip = FlakHitSound;
+					Source.Play();		
+				}
 				pm.HealthBar.value -= pm.ShootOneDamage;
+			}
 			else if(gameObject.tag == "Cannon")
+			{
+				if(CannonHitSound != null)
+				{
+					Source.clip = CannonHitSound;
+					Source.Play();	
+				}
 				pm.HealthBar.value -= pm.ShootTwoDamage;
+			}
 		}
 		
 		//Spawn dust animation
@@ -51,11 +58,6 @@ public class ShotAttributes : MonoBehaviour
 		else if(gameObject.name == "Cannon" && CannonShootSound != null)
 		{
 			Source.clip = CannonShootSound;
-			Source.Play();	
-		}
-		else if(gameObject.name == "Grenade" && GrenadeShootSound != null)
-		{
-			Source.clip = GrenadeShootSound;
 			Source.Play();	
 		}
 	}

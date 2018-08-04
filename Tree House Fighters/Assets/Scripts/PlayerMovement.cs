@@ -74,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
 			reloading = false;
 		}
 
-		if((Axes.toStr[ShootOne] == "ShootOne Controller" || Axes.toStr[ShootOne] == "ShootOne Controller2") && CanShoot)
+		if((Axes.toStr[ShootOne] == "ShootOne Controller"  && CanShoot
+			|| Axes.toStr[ShootOne] == "ShootOne Controller2") && CanShoot)
 		{
 			if(Mathf.Round(Input.GetAxisRaw(Axes.toStr[ShootOne])) < 0)
 			{
@@ -104,9 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
 		if(Input.GetButtonDown(Axes.toStr[ShootThree]) && CanShoot)
 		{
-			//Week 2
 			Debug.Log("Shooting Three");
-			//ShootGrenades();
+			ShootGrenades();
 		}
 		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
@@ -183,7 +183,6 @@ public class PlayerMovement : MonoBehaviour
 		var randomNumberX = Random.Range(-ShootingSpread, ShootingSpread);
      	var randomNumberY = Random.Range(-ShootingSpread, ShootingSpread);
      	var randomNumberZ = Random.Range(-ShootingSpread, ShootingSpread); 
-		Quaternion playerY = Quaternion.Euler(0, transform.rotation.y,0);
 		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 		if(Time.time >= timeStamp)
 		{
@@ -246,16 +245,18 @@ public class PlayerMovement : MonoBehaviour
 	private void ShootGrenades()
 	{
 		Shooting = true;
+		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 
 		if(Time.time >= timeStamp3)
 		{
-			GameObject cannonBall = Instantiate(Cannon, CannonSpawnPos.transform);
-			cannonBall.transform.SetParent(null);
-			transform.rotation = Cam.transform.rotation;
-			cannonBall.GetComponent<Rigidbody>().velocity = (transform.forward * ShootTwoSpeed);
-			timeStamp3 = Time.time + ReloadTimeTwo;
+			GameObject Grenade = Instantiate(Grenades, GrenadeSpawnPos.transform);
+			Grenade.transform.SetParent(null);
+			transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
+			Grenade.GetComponent<Rigidbody>().velocity = (GrenadeSpawnPos.transform.forward * ShootThreeSpeed);
+			timeStamp3 = Time.time + ReloadTimeThree;
+			
 		}
-
+		
 		resetTimer = Time.time + ResetAfterShootTime;
 	}
 }
