@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Left Gun
   - Right Gun
+  - Building
   layers:
   - Default
   - TransparentFX
