@@ -42,7 +42,30 @@ public class ShotAttributes : MonoBehaviour
 				pm.HealthBar.value -= pm.ShootTwoDamage;
 			}
 		}
-		
+		else if(col.tag == "Left Gun")
+		{
+			PlayerMovement pm = col.transform.parent.GetComponent<PlayerMovement>();
+			if(gameObject.tag == "Bullet")
+			{
+				pm.LeftGunHP -= pm.ShootOneDamage;
+			}
+			else if(gameObject.tag == "Cannon")
+			{
+				pm.LeftGunHP -= pm.ShootTwoDamage;
+			}
+		}
+		else if(col.tag == "Right Gun")
+		{
+			PlayerMovement pm = col.transform.parent.GetComponent<PlayerMovement>();
+			if(gameObject.tag == "Bullet")
+			{
+				pm.RightGunHP -= pm.ShootOneDamage;
+			}
+			else if(gameObject.tag == "Cannon")
+			{
+				pm.RightGunHP -= pm.ShootTwoDamage;
+			}
+		}
 		//Spawn dust animation
 		//Move back to queue
 		Destroy(gameObject);

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	private const string LOG_TAG = "PlayerMovement";
 	public bool VERBOSE = false;
 	
-	public Axes.Action Horizontal, Vertical, ShootOne, ShootTwo, ShootThree;
+	public Axes.Action Horizontal, Vertical, ShootOne, ShootTwo, ShootThree, DodgeButton, ReloadButton;
 
 //---------------------------------------------------------------------------FIELDS:
 	
@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
 	[Space(10)]
 	public Camera Cam;
 	public Slider HealthBar;
-	public Text BulletCount;
+	public Text BulletCount, LeftArmHPRegening, RightArmHPRegening;
 	public bool CanMove=true, Shooting = false, CanShoot=true;
+	public float  LeftGunHP, RightGunHP, LeftGunRegenTimer, RightGunRegenTimer, DashSpeed, DashCD;
 	[System.NonSerialized]
 	public float shotsFired;
 
@@ -51,19 +52,24 @@ public class PlayerMovement : MonoBehaviour
 	[Space(10)]
 	public GameObject Bullets;
 	public GameObject Cannon, Grenades;
-	private float resetTimer, timeStamp,timeStamp2,timeStamp3;
-	private bool cannonChange = true, reloading = false;
+	public GameObject LeftGun, RightGun;
+	private float resetTimer, timeStamp,timeStamp2,timeStamp3, leftGunInitialHP, rightGunInitialHP,
+					leftGunTimer, rightGunTimer, dashCooldown;
+	private bool cannonChange = true, reloading = false, healingLeft=false, healingRight=false,
+					dashing = false;
 //---------------------------------------------------------------------MONO METHODS:
 
 	void Start()
 	{
 		shotsFired = MagazineSizeOne;
+		leftGunInitialHP = LeftGunHP;
+		rightGunInitialHP = RightGunHP;
 	}
 	void Update()
     {
 		if(CanMove)
 		{
-			MovePlayer();
+			MovePlayer();	
 		}
 		if(shotsFired != 0 && !reloading)
 		{
@@ -110,6 +116,16 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else if(Time.time >= resetTimer && Shooting)
 			Shooting = false;
+
+		if(Input.GetButtonDown(Axes.toStr[ReloadButton]))
+		{
+			timeStamp = Time.time + ReloadTimeOne;
+			BulletCount.text = "Reloading";
+			reloading = true;
+			shotsFired = MagazineSizeOne;
+		}
+		CalculateArms();
+
     }
 
 //--------------------------------------------------------------------------METHODS:
@@ -138,6 +154,54 @@ public class PlayerMovement : MonoBehaviour
 	}
 	
 //--------------------------------------------------------------------------HELPERS:
+	private void CalculateArms()
+	{
+		if(LeftGunHP <=  0 && healingLeft)
+		{
+			LeftArmHPRegening.text = "Left Arm Repairing - " + (leftGunTimer- Time.time).ToString("F2");
+			if(Time.time >= leftGunTimer)
+			{
+				LeftArmHPRegening.text = "Left Arm Fully Functional";
+				LeftGunHP = leftGunInitialHP;
+
+			}
+		}
+		if(RightGunHP <= 0 && healingRight)
+		{
+			RightArmHPRegening.text = "Right Arm Repairing - " +  (rightGunTimer- Time.time).ToString("F2");
+			if(Time.time >= rightGunTimer)
+			{
+				RightArmHPRegening.text = "Right Arm Fully Functional";
+				RightGunHP = rightGunInitialHP;
+			}
+		}
+
+		if(RightGunHP <= 0 && !healingRight)
+		{
+			RightGun.SetActive(false);
+			rightGunTimer = Time.time + RightGunRegenTimer;
+			cannonChange = false;
+			healingRight = true;
+		}
+		else if(RightGunHP >= 0)
+		{
+			healingRight = false;
+			RightGun.SetActive(true);
+		}	
+
+		if(LeftGunHP <= 0 && !healingLeft)
+		{
+			LeftGun.SetActive(false);
+			leftGunTimer = Time.time +LeftGunRegenTimer;
+			cannonChange = true;
+			healingLeft = true;
+		}
+		else if(LeftGunHP >= 0)
+		{
+			healingLeft = false;
+			LeftGun.SetActive(true);
+		}	
+	}
 	private void Die()
 	{
 		//Add a who win statement too
@@ -145,6 +209,8 @@ public class PlayerMovement : MonoBehaviour
 		constVelocity = Vector3.zero;
 		playerMove = Vector3.zero;
 	}
+
+
 	private void MovePlayer()
 	{
 		Vector3 camForward = Vector3.Cross(Vector3.up, Cam.transform.right).normalized;
@@ -170,7 +236,20 @@ public class PlayerMovement : MonoBehaviour
 		constVelocity+=netForce * Time.deltaTime;
 
 		playerMove+=constVelocity;
-		
+		if(Input.GetButtonDown(Axes.toStr[DodgeButton]) && !dashing)
+		{	
+			CC.Move(playerMove*Time.deltaTime*DashSpeed);
+			if(Time.time > dashCooldown)
+			{
+				dashing = true;
+			}
+		}
+		if(Time.time > dashCooldown)
+		{
+			dashCooldown = Time.time + DashCD;
+			dashing = false;
+		}
+			
 		CC.Move(playerMove*Time.deltaTime);
 		constVelocity=Vector3.Lerp(constVelocity,Vector3.zero,.5f*Time.deltaTime);
 		netForce=Gravity*Vector3.down;
@@ -186,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
 		Quaternion camY = Quaternion.Euler(0, Cam.transform.rotation.eulerAngles.y,0);
 		if(Time.time >= timeStamp)
 		{
-			if(cannonChange)
+			if(cannonChange && RightGunHP > 0)
 			{
 				foreach(GameObject flacks in FlackSpawnPos1)
 				{
@@ -196,9 +275,11 @@ public class PlayerMovement : MonoBehaviour
 					flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
 				}
 				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
-				cannonChange = false;
+				shotsFired--;
+				if(LeftGunHP > 0)
+					cannonChange = false;
 			}
-			else
+			else if (!cannonChange && LeftGunHP > 0)
 			{
 				foreach(GameObject flacks in FlackSpawnPos2)
 				{
@@ -208,9 +289,11 @@ public class PlayerMovement : MonoBehaviour
 					flak.GetComponent<Rigidbody>().velocity = (Cam.transform.forward * ShootOneSpeed);
 				}
 				transform.rotation = Quaternion.Lerp(transform.rotation, camY, Time.time * 0.1f);
-				cannonChange = true;
+				shotsFired--;
+				if(RightGunHP > 0)
+					cannonChange = true;
 			}
-			shotsFired--;
+			
 			if(shotsFired == 0)
 			{
 				//Reload Sound applied here

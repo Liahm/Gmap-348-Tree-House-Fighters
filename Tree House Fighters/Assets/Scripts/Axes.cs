@@ -11,11 +11,11 @@ public class Axes : MonoBehaviour
 
 		MoveXController, MoveYController, DodgeController,
 		CamXController, CamYController,
-		ShootOneController, ShootTwoController, ShootThreeController,
+		ShootOneController, ShootTwoController, ShootThreeController, ReloadController,
 
 		MoveX2, MoveY2, Dodge2,
 		CamX2, CamY2,
-		ShootOne2, ShootTwo2, ShootThree2,
+		ShootOne2, ShootTwo2, ShootThree2, Reload2
 	}
 
 	public static Dictionary<Action, string> toStr = new Dictionary<Action, string>{
@@ -26,6 +26,8 @@ public class Axes : MonoBehaviour
 		{Action.ShootOne, "ShootOne"},
 		{Action.ShootTwo, "ShootTwo"},
 		{Action.ShootThree, "ShootThree"},
+		{Action.Dodge, "Dodge"},
+
 
 		{Action.MoveXController,"Horizontal Controller"},
 		{Action.MoveYController,"Vertical Controller"},
@@ -34,6 +36,8 @@ public class Axes : MonoBehaviour
 		{Action.ShootOneController, "ShootOne Controller"},
 		{Action.ShootTwoController, "ShootTwo Controller"},
 		{Action.ShootThreeController, "ShootThree Controller"},
+		{Action.DodgeController, "DodgeController"},
+		{Action.ReloadController, "ReloadController"},
 
 		{Action.MoveX2,"Horizontal Controller2"},
 		{Action.MoveY2,"Vertical Controller2"},
@@ -42,6 +46,8 @@ public class Axes : MonoBehaviour
 		{Action.ShootOne2, "ShootOne Controller2"},
 		{Action.ShootTwo2, "ShootTwo Controller2"},
 		{Action.ShootThree2, "ShootThree Controller2"},
+		{Action.Dodge2, "Dodge Controller2"},
+		{Action.Reload2, "Reload Controller2"},
 	};
 
 	public static float GetAxis(Action a) {

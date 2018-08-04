@@ -8,6 +8,8 @@ TagManager:
   - Cannon
   - Grenade
   - Wall
+  - Left Gun
+  - Right Gun
   layers:
   - Default
   - TransparentFX
