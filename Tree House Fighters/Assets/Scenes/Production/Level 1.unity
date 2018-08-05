@@ -20866,7 +20866,7 @@ MonoBehaviour:
   VERBOSE: 0
   SpawnObject: {fileID: 1930357038939996, guid: 3d2845c5c7bf70847aa8cc973eddb0de,
     type: 2}
-  RespawnTime: 20
+  RespawnTime: 2
 --- !u!4 &1625372140
 Transform:
   m_ObjectHideFlags: 0
