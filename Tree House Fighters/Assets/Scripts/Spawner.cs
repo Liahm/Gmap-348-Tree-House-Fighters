@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
     {
 		if(Time.time >= respawntimer && !ObjectActive)
 		{
-			var spawnedObject = Instantiate(SpawnObject, transform.position, Quaternion.identity);
+			var spawnedObject = Instantiate(SpawnObject, transform.position, SpawnObject.transform.rotation);
 			spawnedObject.GetComponent<PowerUp>().spawn = gameObject.GetComponent<Spawner>();
 			ObjectActive = true;
 		}
