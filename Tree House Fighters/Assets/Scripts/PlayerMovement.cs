@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject Cannon, Grenades;
 	public GameObject LeftGun, RightGun;
 	private float resetTimer, timeStamp,timeStamp2,timeStamp3, leftGunInitialHP, rightGunInitialHP,
-					leftGunTimer, rightGunTimer, dashCooldown;
+					leftGunTimer, rightGunTimer, dashCooldown, activationTime;
 	private bool cannonChange = true, reloading = false, healingLeft=false, healingRight=false,
 					dashing = false;
 //---------------------------------------------------------------------MONO METHODS:
@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 		shotsFired = MagazineSizeOne;
 		leftGunInitialHP = LeftGunHP;
 		rightGunInitialHP = RightGunHP;
+		activationTime = 0.25f;
 	}
 	void Update()
     {
@@ -236,9 +237,19 @@ public class PlayerMovement : MonoBehaviour
 		constVelocity+=netForce * Time.deltaTime;
 
 		playerMove+=constVelocity;
-		if(Input.GetButton(Axes.toStr[DodgeButton]))
+		if(Input.GetButton(Axes.toStr[DodgeButton]) && !dashing)
 		{	
 			CC.Move(playerMove*Time.deltaTime*DashSpeed);
+			dashCooldown = Time.time + DashCD;
+			if(Time.time >= activationTime)
+			{
+				dashing = true;
+			}
+		}
+		if(dashing && Time.time >= dashCooldown)
+		{
+			dashing = false;
+			activationTime = Time.time + DashCD;
 		}
 		
 		CC.Move(playerMove*Time.deltaTime);

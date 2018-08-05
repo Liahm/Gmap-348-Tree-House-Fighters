@@ -21,6 +21,9 @@ public class PowerUp : MonoBehaviour
 	private bool respawning;
 	private BoxCollider box;
 	private MeshRenderer mesh;
+
+	[System.NonSerialized]
+	public Spawner spawn; 
 //---------------------------------------------------------------------MONO METHODS:
 	void OnTriggerEnter(Collider col)
 	{
@@ -40,7 +43,13 @@ public class PowerUp : MonoBehaviour
 			}
 			else if(PowerUpType == PowerType.FasterAttack)
 			{
-				savedShootingRateVal = pm.ShootOneFireRate;
+				if(spawn != null)
+				{
+					spawn.ObjectActive = false;
+					spawn.respawntimer = Time.time + spawn.RespawnTime;
+				}
+				if(pm.ShootOneFireRate != savedShootingRateVal)
+					savedShootingRateVal = pm.ShootOneFireRate;
 				pm.ShootOneFireRate = NewShootOneRate;
 
 				StartCoroutine(Reset(pm));
@@ -74,6 +83,8 @@ public class PowerUp : MonoBehaviour
 //--------------------------------------------------------------------------HELPERS:
 	IEnumerator Reset(PlayerMovement pm)
 	{
+		gameObject.GetComponent<MeshRenderer>().enabled = false;
+		gameObject.GetComponent<BoxCollider>().enabled = false;
 		yield return new WaitForSeconds(PowerUpTimer);
 		pm.ShootOneFireRate = savedShootingRateVal;
 		Destroy(gameObject);
