@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1615407690742842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   GrenadeShootSound: {fileID: 0}
   GrenadeHitSound: {fileID: 0}
   Source: {fileID: 82935646619140450}
-  GrenadeExplosion: {fileID: 1389797852283606, guid: 032a9a0651173af4ebafe3418a23cc6f,
+  GrenadeExplosion: {fileID: 1001519281825826, guid: 032a9a0651173af4ebafe3418a23cc6f,
     type: 2}
   activated: 0
 --- !u!135 &135021533081675872
