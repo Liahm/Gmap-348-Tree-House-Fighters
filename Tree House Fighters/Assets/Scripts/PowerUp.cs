@@ -17,6 +17,7 @@ public class PowerUp : MonoBehaviour
 	public GameObject TeleportLocation;
 	public PowerType PowerUpType;
 	public float HealthPackHeal, PowerUpTimer, NewShootOneRate, HealthPackRespawm;
+	public Vector3 RotationValues;
 	private float savedShootingRateVal, savedHealthPackRespawm;
 	private bool respawning;
 	private BoxCollider box;
@@ -67,7 +68,7 @@ public class PowerUp : MonoBehaviour
 	void Update()
 	{
 		if(PowerUpType != PowerType.Teleporter)
-			transform.Rotate (new Vector3 (0, 30, 0) * Time.deltaTime);
+			transform.Rotate (RotationValues * Time.deltaTime);
 
 		if(respawning && PowerUpType != PowerType.HealthPack)
 		{
