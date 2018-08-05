@@ -64,24 +64,15 @@ public class PowerUp : MonoBehaviour
 		mesh = gameObject.GetComponent<MeshRenderer>();
 		if(PowerUpType == PowerType.HealthPack)	
 			healthChild = transform.Find("Health Group").gameObject;
+		else if(PowerUpType == PowerType.FasterAttack)
+			healthChild = transform.Find("Rocket Group").gameObject;
 	}
 	void Update()
 	{
 		if(PowerUpType != PowerType.Teleporter)
 			transform.Rotate (RotationValues * Time.deltaTime);
 
-		if(respawning && PowerUpType != PowerType.HealthPack)
-		{
-			box.enabled = false;
-			mesh.enabled = false;
-			if(Time.time >= savedHealthPackRespawm)
-			{
-				box.enabled = true;
-				mesh.enabled = true;
-				respawning = false;
-			}
-		}
-		else if (respawning && PowerUpType == PowerType.HealthPack)
+		else if (respawning)
 		{
 			box.enabled = false;
 			healthChild.SetActive(false);
