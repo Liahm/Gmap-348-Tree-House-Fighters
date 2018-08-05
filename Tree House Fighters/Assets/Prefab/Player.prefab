@@ -918,8 +918,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557423954043832}
-  m_LocalRotation: {x: -0, y: 0.941573, z: -0, w: 0.3368089}
-  m_LocalPosition: {x: -72.77608, y: 1.92, z: 50.977394}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 22.47, y: 3.04, z: 1.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4780899182896968}
@@ -934,7 +934,7 @@ Transform:
   - {fileID: 4680524897358356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 140.63501, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4993610242359846
 Transform:
   m_ObjectHideFlags: 1
@@ -1642,7 +1642,7 @@ MonoBehaviour:
   DashSpeed: 40
   DashCD: 1
   Speed: 25
-  ShootingPlayerSpeed: 7
+  ShootingPlayerSpeed: 10
   ResetAfterShootTime: 1
   Gravity: 9.81
   ReloadTimeOne: 3
