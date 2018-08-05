@@ -1639,9 +1639,9 @@ MonoBehaviour:
   RightGunHP: 25
   LeftGunRegenTimer: 10
   RightGunRegenTimer: 10
-  DashSpeed: 15
+  DashSpeed: 40
   DashCD: 1
-  Speed: 14
+  Speed: 25
   ShootingPlayerSpeed: 7
   ResetAfterShootTime: 1
   Gravity: 9.81
