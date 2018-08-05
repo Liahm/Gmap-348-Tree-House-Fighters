@@ -53,7 +53,7 @@ public class PowerUp : MonoBehaviour
 				if(pm.ShootOneFireRate != savedShootingRateVal)
 					savedShootingRateVal = pm.ShootOneFireRate;
 				pm.ShootOneFireRate = NewShootOneRate;
-
+				respawning = true;
 				StartCoroutine(Reset(pm));
 			}
 		}
@@ -90,8 +90,7 @@ public class PowerUp : MonoBehaviour
 //--------------------------------------------------------------------------HELPERS:
 	IEnumerator Reset(PlayerMovement pm)
 	{
-		gameObject.GetComponent<MeshRenderer>().enabled = false;
-		gameObject.GetComponent<BoxCollider>().enabled = false;
+
 		yield return new WaitForSeconds(PowerUpTimer);
 		pm.ShootOneFireRate = savedShootingRateVal;
 		Destroy(gameObject);
