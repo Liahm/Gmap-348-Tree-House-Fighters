@@ -21,6 +21,7 @@ public class PowerUp : MonoBehaviour
 	private bool respawning;
 	private BoxCollider box;
 	private MeshRenderer mesh;
+	private GameObject healthChild;
 
 	[System.NonSerialized]
 	public Spawner spawn; 
@@ -60,13 +61,15 @@ public class PowerUp : MonoBehaviour
 	{
 		box = gameObject.GetComponent<BoxCollider>();
 		mesh = gameObject.GetComponent<MeshRenderer>();
+		if(PowerUpType == PowerType.HealthPack)	
+			healthChild = transform.Find("Health Group").gameObject;
 	}
 	void Update()
 	{
 		if(PowerUpType != PowerType.Teleporter)
 			transform.Rotate (new Vector3 (0, 30, 0) * Time.deltaTime);
 
-		if(respawning)
+		if(respawning && PowerUpType != PowerType.HealthPack)
 		{
 			box.enabled = false;
 			mesh.enabled = false;
@@ -74,6 +77,17 @@ public class PowerUp : MonoBehaviour
 			{
 				box.enabled = true;
 				mesh.enabled = true;
+				respawning = false;
+			}
+		}
+		else if (respawning && PowerUpType == PowerType.HealthPack)
+		{
+			box.enabled = false;
+			healthChild.SetActive(false);
+			if(Time.time >= savedHealthPackRespawm)
+			{
+				box.enabled = true;
+				healthChild.SetActive(true);
 				respawning = false;
 			}
 		}
