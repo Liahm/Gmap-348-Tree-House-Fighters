@@ -16,8 +16,11 @@ public class PowerUp : MonoBehaviour
 //---------------------------------------------------------------------------FIELDS:
 	public GameObject TeleportLocation;
 	public PowerType PowerUpType;
-	public float HealthPackHeal, PowerUpTimer, NewShootOneRate;
-	private float savedShootingRateVal;
+	public float HealthPackHeal, PowerUpTimer, NewShootOneRate, HealthPackRespawm;
+	private float savedShootingRateVal, savedHealthPackRespawm;
+	private bool respawning;
+	private BoxCollider box;
+	private MeshRenderer mesh;
 //---------------------------------------------------------------------MONO METHODS:
 	void OnTriggerEnter(Collider col)
 	{
@@ -27,6 +30,8 @@ public class PowerUp : MonoBehaviour
 			if(PowerUpType == PowerType.HealthPack)
 			{
 				pm.HealthBar.value += HealthPackHeal;
+				respawning = true;
+				savedHealthPackRespawm = Time.time + HealthPackHeal;
 			}
 			else if(PowerUpType == PowerType.Teleporter)
 			{
@@ -42,13 +47,30 @@ public class PowerUp : MonoBehaviour
 			}
 		}
 	}
-
-//--------------------------------------------------------------------------METHODS:
-
+	void Start()
+	{
+		box = gameObject.GetComponent<BoxCollider>();
+		mesh = gameObject.GetComponent<MeshRenderer>();
+	}
 	void Update()
 	{
 		transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
+
+		if(respawning)
+		{
+			box.enabled = false;
+			mesh.enabled = false;
+			if(Time.time >= savedHealthPackRespawm)
+			{
+				box.enabled = true;
+				mesh.enabled = true;
+				respawning = false;
+			}
+		}
 	}
+//--------------------------------------------------------------------------METHODS:
+
+	
 //--------------------------------------------------------------------------HELPERS:
 	IEnumerator Reset(PlayerMovement pm)
 	{
