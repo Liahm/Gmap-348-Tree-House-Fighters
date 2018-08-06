@@ -237,6 +237,11 @@ Prefab:
       propertyPath: RightArmHPRegening
       value: 
       objectReference: {fileID: 661537175}
+    - target: {fileID: 114149322752395930, guid: 5b4fa4d0c518cdc4c886299e35bea119,
+        type: 2}
+      propertyPath: CamHorAngle
+      value: -85
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b4fa4d0c518cdc4c886299e35bea119, type: 2}
   m_IsPrefabParent: 0
@@ -5072,6 +5077,11 @@ Prefab:
       propertyPath: RightArmHPRegening
       value: 
       objectReference: {fileID: 744427865}
+    - target: {fileID: 114431986695395550, guid: 921e7f4a98013b949a2da447fa755015,
+        type: 2}
+      propertyPath: CamHorAngle
+      value: -270
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 921e7f4a98013b949a2da447fa755015, type: 2}
   m_IsPrefabParent: 0

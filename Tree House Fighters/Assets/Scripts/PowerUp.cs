@@ -45,6 +45,8 @@ public class PowerUp : MonoBehaviour
 			}
 			else if(PowerUpType == PowerType.FasterAttack)
 			{
+				box.enabled = false;
+				healthChild.SetActive(false);
 				if(spawn != null)
 				{
 					spawn.ObjectActive = false;
@@ -53,7 +55,7 @@ public class PowerUp : MonoBehaviour
 				if(pm.ShootOneFireRate != savedShootingRateVal)
 					savedShootingRateVal = pm.ShootOneFireRate;
 				pm.ShootOneFireRate = NewShootOneRate;
-				respawning = true;
+				
 				StartCoroutine(Reset(pm));
 			}
 		}
@@ -61,7 +63,8 @@ public class PowerUp : MonoBehaviour
 	void Start()
 	{
 		box = gameObject.GetComponent<BoxCollider>();
-		mesh = gameObject.GetComponent<MeshRenderer>();
+		if(gameObject.GetComponent<MeshRenderer>() != null)
+			mesh = gameObject.GetComponent<MeshRenderer>();
 		if(PowerUpType == PowerType.HealthPack)	
 			healthChild = transform.Find("Health Group").gameObject;
 		else if(PowerUpType == PowerType.FasterAttack)
@@ -72,7 +75,7 @@ public class PowerUp : MonoBehaviour
 		if(PowerUpType != PowerType.Teleporter)
 			transform.Rotate (RotationValues * Time.deltaTime);
 
-		else if (respawning)
+		if (respawning)
 		{
 			box.enabled = false;
 			healthChild.SetActive(false);
