@@ -275,7 +275,7 @@ MonoBehaviour:
   PowerUpType: 2
   HealthPackHeal: 0
   PowerUpTimer: 10
-  NewShootOneRate: 40
+  NewShootOneRate: 0.1
   HealthPackRespawm: 0
   RotationValues: {x: 90, y: 0, z: 0}
 --- !u!198 &198465140275353416
