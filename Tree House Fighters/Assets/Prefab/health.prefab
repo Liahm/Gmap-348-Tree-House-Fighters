@@ -273,7 +273,7 @@ MonoBehaviour:
   VERBOSE: 0
   TeleportLocation: {fileID: 0}
   PowerUpType: 0
-  HealthPackHeal: 30
+  HealthPackHeal: 20
   PowerUpTimer: 1
   NewShootOneRate: 0
   HealthPackRespawm: 40
